@@ -1,0 +1,62 @@
+<div class="app-cadastrar-cliente main-container">
+  <p-confirmPopup></p-confirmPopup>
+  <p-toast></p-toast>
+  <div>
+    <div class="p-d-flex p-jc-center p-p-5 cadastrar-cliente-content page-content">
+      <div class="p-p-3 cadastrar-cliente inner-page-content">
+        <h3>Clientes</h3>
+        <p-panel header="Novo Cadastro" class="novo">
+          <div class="p-grid">
+            <div class="p-col-4">
+              <h5>Tipo</h5>
+              <p-dropdown [(ngModel)]="tipoPessoaSelecionado" [options]="tiposPessoa"
+                          optionLabel="tipoPessoa"></p-dropdown>
+            </div>
+            <div class="p-col-5">
+              <h5>CPF/CNPJ</h5>
+              <p-inputMask [hidden]="verificaPessoaJuridica()" [(ngModel)]="cpfCnpj" mask="99.999.999/9999-99"></p-inputMask>
+              <p-inputMask [hidden]="verificaPessoaFisica()" [(ngModel)]="cpfCnpj" mask="999.999.999-99"></p-inputMask>
+            </div>
+            <div class="p-col-3" [hidden]="verificaPessoaJuridica()">
+              <h5>Inscrição Estadual</h5>
+              <input type="number" min="0" pInputText [(ngModel)]="inscricaoEstadual">
+            </div>
+          </div>
+          <div class="p-grid">
+            <div class="p-col-5">
+              <h5>Nome/Razão Social</h5>
+              <input type="text" pInputText [(ngModel)]="nome">
+            </div>
+            <div class="p-col-3" [hidden]="verificaPessoaFisica()">
+              <h5>Sexo</h5>
+              <p-dropdown [options]="sexos" [(ngModel)]="sexoSelecionado" placeholder="Selecione" optionLabel="sexo"></p-dropdown>
+            </div>
+            <div class="p-col-2" [hidden]="verificaPessoaFisica()">
+              <h5>Data Nascimento</h5>
+              <p-calendar [(ngModel)]="dataNascimento" dateFormat="dd/mm/yy"></p-calendar>
+            </div>
+            <div class="p-col-2">
+              <h5>Situação</h5>
+              <p-dropdown [options]="situacao" [(ngModel)]="situacaoSelecionada" optionLabel="nome"></p-dropdown>
+            </div>
+          </div>
+          <p-tabView>
+            <p-tabPanel header="Endereço">
+              <app-endereco-pessoa (adicionarEnderecoEvent)="adicionarEndereco($event)"></app-endereco-pessoa>
+            </p-tabPanel>
+            <p-tabPanel header="Contato Telefônico">
+              <app-telefone-pessoa (adicionarTelefoneEvent)="adicionarTelefone($event)"></app-telefone-pessoa>
+            </p-tabPanel>
+            <p-tabPanel header="E-mail">
+              <app-email-pessoa (adicionarEmailEvent)="adicionarEmail($event)"></app-email-pessoa>
+            </p-tabPanel>
+          </p-tabView>
+          <div class="p-d-flex p-jc-evenly">
+            <p-button (onClick)="clickSalvar()" styleClass="button" label="Salvar" icon="pi pi-check" iconPos="left"></p-button>
+            <p-button (onClick)="clickCancelar()" styleClass="button" label="Cancelar" icon="pi pi-times" iconPos="left"></p-button>
+          </div>
+        </p-panel>
+      </div>
+    </div>
+  </div>
+</div>

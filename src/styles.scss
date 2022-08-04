@@ -1,0 +1,93 @@
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+h5 {
+  margin: 0.5em 0;
+}
+html {
+  .main-container {
+    .page-content {
+      background-color: #f1f1f1;
+      width: 100%;
+      min-height: calc(100vh - 130px - 64.5px);
+      .inner-page-content {
+        background-color: #ffffff;
+        width: 1300px;
+        .p-dropdown { width: 100%; }
+        .p-inputtext { width: 100%; }
+        .p-inputnumber { width: 100%; }
+        .p-autocomplete { width: 100%; }
+        .p-button { margin-left: 16px; }
+        .lista .p-panel {
+          margin-top: 16px;
+          .p-panel-content { padding: 0; }
+        }
+        .p-tabview {
+          li {
+            margin: 0 4px 0 4px;
+          }
+          .p-tabview-nav-link {
+            background: #f2f2f2;
+            border-color: #f2f2f2;
+          }
+          .p-highlight .p-tabview-nav-link{
+            background: #169bd5;
+            border-color: #169bd5;
+            color: #ffffff;
+          }
+        }
+        th {
+          text-align: center;
+          padding: 4px;
+        }
+        td {
+          text-align: center;
+          padding: 4px;
+        }
+      }
+      .pesquisa {
+        margin-bottom: 16px;
+        .p-button { margin: 8px 0 0 16px; }
+      }
+    }
+    .p-panel-header {
+      background-color: #4153b3;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      .p-panel-title { color: #ffffff; }
+      .p-button { background-color: #169bd5; }
+    }
+    .button { background-color: #4153b3; }
+    .button-item .p-button {
+      background-color: #ffffff00;
+      border: 0;
+      margin: 0 !important;
+      .pi-pencil {
+        color: blue;
+        font-size: 1.2rem;
+      }
+      .pi-trash {
+        color: red;
+        font-size: 1.2rem;
+      }
+    }
+  }
+  .p-datatable.p-datatable-striped {
+    .p-datatable-tbody {
+      tr:nth-child(even) {
+        background-color: rgba(242,242,242,255);
+      }
+    }
+  }
+}

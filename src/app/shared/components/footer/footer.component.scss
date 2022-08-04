@@ -1,0 +1,25 @@
+.app-footer {
+  background-color: #2a3791;
+  width:100%;
+  position: fixed;
+  bottom:0;
+  left:0;
+}
+  .footer-icon {
+    width: 60px;
+    object-fit: cover;
+    text-align: center;
+    background: white;
+    background: radial-gradient(circle, rgb(255, 255, 255) 0%, rgba(0,0,0,0) 60%);
+  }
+.img{
+  width: 64px;
+  height: 67px;
+  position: center;
+}
+//.footer{
+//  width:100%;
+//  position: fixed;
+//  bottom:0;
+//  left:0;
+//}

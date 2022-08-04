@@ -1,0 +1,120 @@
+<div class="app-incluir-venda main-container">
+  <p-toast></p-toast>
+  <div>
+    <div class="p-d-flex p-jc-center p-p-5 incluir-venda-content page-content">
+      <div class="p-p-3 incluir-venda inner-page-content">
+        <h3>Venda</h3>
+        <p-panel class="tela-venda" header="Tela de Venda">
+          <div class="tabela-valores p-d-flex p-jc-end p-grid">
+            <p-table [value]="valores" class="p-col-4">
+              <ng-template pTemplate="header">
+              </ng-template>
+              <ng-template let-item pTemplate="body">
+                <tr>
+                  <td class="table-data">{{ item.nome }}</td>
+                  <td class="table-data">{{ item.valorFormatado }}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+          <div class="container-cliente-vendedor p-grid">
+            <div class="p-col-2">
+              <h5>Data</h5>
+              <p-inputMask [(ngModel)]="data" [disabled]="true" mask="99/99/9999"></p-inputMask>
+            </div>
+            <div class="p-col-4">
+              <h5>Vendedor</h5>
+              <input [(ngModel)]="vendedor" [disabled]="true" pInputText type="text">
+            </div>
+            <div class="p-col-4">
+              <h5>Cliente</h5>
+              <p-autoComplete (completeMethod)="autocompleteCliente($event)" [(ngModel)]="clienteSelecionado"
+                              [forceSelection]="true"
+                              [suggestions]="clientesFiltrados" field="nome"></p-autoComplete>
+            </div>
+            <div class="p-col-2">
+              <h5>Observação</h5>
+              <input [(ngModel)]="observacao" class="input-observacao" pInputText type="text">
+            </div>
+          </div>
+          <div class="p-mt-4 container-produto">
+            <div class="p-grid p-mx-2">
+              <div class="p-col-12">
+                <h5>Pesquisa de produto</h5>
+                <p-autoComplete (completeMethod)="autocompleteProduto($event)" [(ngModel)]="produtoSelecionado"
+                                [forceSelection]="true"
+                                [suggestions]="produtosFiltrados" field="nome"></p-autoComplete>
+              </div>
+            </div>
+            <div class="p-grid p-d-flex p-jc-between p-ai-end p-ml-2">
+              <div class="p-col-3">
+                <h5>Quantidade</h5>
+                <p-inputNumber (focusout)="verificaQuantidade()" [(ngModel)]="quantidade"
+                               [disabled]="verificaProdutoSelecionado()" [maxFractionDigits]="0"
+                               [min]="0"></p-inputNumber>
+              </div>
+              <div class="p-col-3">
+                <h5>Valor Unitário</h5>
+                <p-inputNumber [(ngModel)]="produtoSelecionado.valor" [disabled]="true"
+                               [inputStyle]="{'text-align': 'right'}" currency="BRL"
+                               locale="pt-BR" mode="currency"></p-inputNumber>
+              </div>
+              <div class="p-col-3">
+                <h5>Desconto</h5>
+                <p-inputNumber [(ngModel)]="produtoSelecionado.valorDesconto" [disabled]="true"
+                               [inputStyle]="{'text-align': 'right'}"
+                               currency="BRL" locale="pt-BR" mode="currency"></p-inputNumber>
+              </div>
+              <div class="p-col-3">
+                <p-button (onClick)="clickAdicionar()" icon="pi pi-plus" iconPos="left" label="Adicionar"
+                          styleClass="button"></p-button>
+              </div>
+            </div>
+          </div>
+          <div class="tabela-produtos p-my-4">
+            <p-table [value]="vendaItens">
+              <ng-template pTemplate="header">
+                <th class="col-numero">#</th>
+                <th class="col-codigo">Código</th>
+                <th class="col-descricao">Nome do Produto</th>
+                <th class="col-quantidade">Quantidade</th>
+                <th class="col-precoUnitario">Preço Unitário</th>
+                <th class="col-descontoUnitario">Desconto Unitário</th>
+                <th class="col-precoTotal">Preço Total</th>
+              </ng-template>
+              <ng-template let-i="rowIndex" let-item pTemplate="body">
+                <tr>
+                  <td class="col-numero">{{ i + 1 }}</td>
+                  <td class="col-codigo">{{ item.id }}</td>
+                  <td class="col-descricao" style="text-align: left">{{ item.nome }}</td>
+                  <td class="col-quantidade">{{ item.qtde  }}</td>
+                  <td class="col-precoUnitario">{{ item.valor.toLocaleString('pt-BR', {
+                    minimumFractionDigits: 2,
+                    style: 'currency',
+                    currency: 'BRL'
+                  }) }}</td>
+                  <td class="col-descontoUnitario">{{ item.valorDesconto.toLocaleString('pt-BR', {
+                    minimumFractionDigits: 2,
+                    style: 'currency',
+                    currency: 'BRL'
+                  }) }}</td>
+                  <td class="col-precoTotal">{{ item.precoTotal.toLocaleString('pt-BR', {
+                    minimumFractionDigits: 2,
+                    style: 'currency',
+                    currency: 'BRL'
+                  }) }}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+          <div class="p-d-flex p-jc-evenly">
+            <p-button (onClick)="clickSalvar()" icon="pi pi-check" iconPos="left" label="Salvar"
+                      styleClass="button"></p-button>
+            <p-button (onClick)="clickCancelar()" icon="pi pi-times" iconPos="left" label="Cancelar"
+                      styleClass="button"></p-button>
+          </div>
+        </p-panel>
+      </div>
+    </div>
+  </div>
+</div>

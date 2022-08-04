@@ -1,0 +1,94 @@
+::ng-deep .app-incluir-venda {
+  .p-grid input {
+    width: 100%;
+  }
+
+  .container-cliente-vendedor {
+    .p-autocomplete-input {
+      background-color: #e0f4fd;
+    }
+  }
+
+  .container-produto {
+    .p-autocomplete-input {
+      background-color: #e2f04c;
+    }
+
+    .p-inputnumber {
+      .p-inputnumber-input {
+        text-align: right;
+        background-color: #e2f04c;
+      }
+    }
+
+    .p-button {
+      margin: 0;
+    }
+  }
+}
+
+.app-incluir-venda {
+  .incluir-venda-content {
+    .incluir-venda {
+      .tabela-valores {
+        .table-data {
+          background-color: #c5e198;
+          border: 1px solid black;
+        }
+      }
+
+      .container-cliente-vendedor {
+        input {
+          background-color: #e0f4fd;
+        }
+
+        .input-observacao {
+          background-color: #f2f2f2;
+        }
+      }
+
+      .container-produto {
+        background-color: #c5e198;
+
+        input {
+          background-color: #e2f04c !important;
+        }
+      }
+
+      .tabela-produtos {
+        th {
+          border: 1px solid black;
+        }
+
+        td {
+          background-color: #ffffb8;
+          border: 1px solid black;
+        }
+
+        .col-numero {
+          width: 45px;
+        }
+
+        .col-codigo {
+          width: 110px;
+        }
+
+        .col-quantidade {
+          width: 100px;
+        }
+
+        .col-precoUnitario {
+          width: 125px;
+        }
+
+        .col-descontoUnitario {
+          width: 150px;
+        }
+
+        .col-precoTotal {
+          width: 130px;
+        }
+      }
+    }
+  }
+}

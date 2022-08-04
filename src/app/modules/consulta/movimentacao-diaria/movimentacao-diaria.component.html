@@ -1,0 +1,95 @@
+<div class="app-movimentacao-diaria main-container">
+  <p-confirmPopup></p-confirmPopup>
+  <p-toast></p-toast>
+  <div>
+    <div class="p-d-flex p-jc-center p-p-5 movimentacao-diaria-content page-content">
+      <div class="p-p-3 movimentacao-diaria inner-page-content">
+        <h3>Consulta</h3>
+        <p-panel class="movimento-diario" header="Movimento Diário">
+          <div class="p-grid p-d-flex p-jc-between">
+            <div class="p-col-2">
+              <h5>Data Inicial</h5>
+              <p-inputMask [(ngModel)]="dataInicial" mask="99/99/9999"></p-inputMask>
+            </div>
+            <div class="p-col-2">
+              <h5>Data Final</h5>
+              <p-inputMask [(ngModel)]="dataFinal" mask="99/99/9999"></p-inputMask>
+            </div>
+            <div class="p-col-2">
+              <h5>Valor Inicial</h5>
+              <p-inputNumber [(ngModel)]="valorInicial" [inputStyle]="{'text-align': 'right'}" currency="BRL"
+                             locale="pt-BR" mode="currency"></p-inputNumber>
+            </div>
+            <div class="p-col-2">
+              <h5>Valor Final</h5>
+              <p-inputNumber [(ngModel)]="valorFinal" [inputStyle]="{'text-align': 'right'}" currency="BRL"
+                             locale="pt-BR" mode="currency"></p-inputNumber>
+            </div>
+            <!--            <div class="p-col-4">-->
+            <!--              <h5>Vendedor</h5>-->
+            <!--              <input [(ngModel)]="vendedor" pInputText type="text">-->
+            <!--            </div>-->
+          </div>
+          <div class="p-grid p-d-flex">
+            <div class="p-col-6">
+              <h5>Produto</h5>
+              <p-autoComplete (completeMethod)="autocompleteProduto($event.query)" [(ngModel)]="produtoSelecionado"
+                              [forceSelection]="true" [suggestions]="produtosFiltrados" field="nome"></p-autoComplete>
+            </div>
+            <!--            <div class="p-col-3">-->
+            <!--              <h5>Situação</h5>-->
+            <!--              <p-dropdown [(ngModel)]="situacaoSelecionada" [options]="situacoes" optionLabel="nome"-->
+            <!--                          placeholder="Selecione"></p-dropdown>-->
+            <!--            </div>-->
+          </div>
+          <div class="p-grid p-d-flex p-jc-between">
+            <div class="p-col-6">
+              <h5>Cliente</h5>
+              <p-autoComplete (completeMethod)="autocompleteCliente($event.query)" [(ngModel)]="clienteSelecionado"
+                              [forceSelection]="true" [suggestions]="clientesFiltrados" field="nome"></p-autoComplete>
+            </div>
+          </div>
+          <div class="p-d-flex p-jc-end">
+            <p-button
+              (onClick)="clickPesquisar(dataInicial,dataFinal,valorInicial,valorFinal,clienteSelecionado.id,produtoSelecionado.id)"
+              icon="pi pi-search" iconPos="left" label="Pesquisar"
+              styleClass="button"></p-button>
+            <p-button (onClick)="clickLimpar()" icon="pi pi-refresh" iconPos="left" label="Limpar"
+                      styleClass="button"></p-button>
+            <p-button (onClick)="clickImprimir()" icon="pi pi-print" iconPos="left" label="Imprimir"
+                      styleClass="button"></p-button>
+          </div>
+        </p-panel>
+        <p-panel class="lista" header="Itens Vendidos">
+          <div>
+            <p-table [paginator]="true" [rowsPerPageOptions]="[10,25,50]" [rows]="10" [showCurrentPageReport]="true"
+                     [value]="itensMovimentacao" currentPageReportTemplate="" styleClass="p-datatable-striped">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th class="col-numero">#</th>
+                  <th class="col-data">Data</th>
+                  <th class="col-produto">Produto</th>
+                  <th class="col-quantidade">Qtd</th>
+                  <th class="col-valor">Valor</th>
+                  <th class="col-cliente">Cliente</th>
+                  <th class="col-vendedor">Vendedor</th>
+                </tr>
+              </ng-template>
+              <ng-template let-i="rowIndex" let-item pTemplate="body">
+                <tr>
+                  <td class="col-numero">{{ i + 1 }}</td>
+                  <td class="col-data">{{ item.data }}</td>
+                  <td class="col-produto" style="text-align: left">{{ item.produto }}</td>
+                  <td class="col-quantidade">{{ item.qtd }}</td>
+                  <td class="col-valor">{{ item.valor }}</td>
+                  <td class="col-cliente" style="text-align: left">{{ item.cliente }}</td>
+                  <td class="col-vendedor" style="text-align: left">{{ item.vendedor }}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+        </p-panel>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+::ng-deep .app-header {
+  .p-menubar {
+    background-color: #2a3791;
+    border: 0;
+    border-radius: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    li.p-menuitem {
+      .p-menuitem-link {
+        background-color: #2a3791 !important;
+        color: #ffffff !important;
+        .p-menuitem-text { color: #ffffff !important; }
+        .p-menuitem-icon { color: #ffffff !important; }
+        .p-submenu-icon { visibility: hidden; }
+      }
+      p-menubarsub .p-submenu-list {
+        padding: 0;
+        .p-menuitem-link {
+          background-color: #ffffff !important;
+          .p-menuitem-text { color: #000000 !important; }
+        }
+        .p-menuitem-active a {
+          background-color: #169bd5 !important;
+          .p-menuitem-text { color: #ffffff !important }
+        }
+      }
+    }
+  }
+}
+.app-header {
+  .main-block {
+    height: 90px;
+    .logo-title-block {
+      margin-right: 100px;
+    }
+    .user-icon-block {
+      background-color: #4153b3;
+      color: #ffffff;
+      width: 100%;
+      margin: 0;
+      height: 100%;
+      .nomeUsuario { font-size: 1rem; }
+      .funcaoUsuario { font-size: 0.8rem; }
+      .user-icon {
+        width: 36px;
+        height: 36px;
+        object-fit: cover;
+      }
+    }
+  }
+}

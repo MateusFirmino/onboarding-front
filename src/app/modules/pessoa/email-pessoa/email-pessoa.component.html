@@ -1,0 +1,43 @@
+<div class="app-pessoa-email">
+  <div class="p-grid">
+    <div class="p-col-6">
+      <h5>E-mail</h5>
+      <input type="text" pInputText [(ngModel)]="email">
+    </div>
+    <div class="p-col-2">
+      <h5>Padrão</h5>
+      <div class="p-d-flex p-flex-row p-jc-between">
+        <div *ngFor="let opcao of opcoesPadrao" class="p-field-checkbox">
+          <p-radioButton [inputId]="opcao.key" name="opcao" [value]="opcao" [(ngModel)]="opcaoPadraoSelecionada"></p-radioButton>
+          <label [for]="opcao.key">{{ opcao.nome }}</label>
+        </div>
+      </div>
+    </div>
+    <div class="p-col-4 p-d-flex p-jc-end p-ai-center">
+      <p-button (onClick)="clickAdicionar()" [disabled]="!camposPreenchidos()" styleClass="button" label="Adicionar" icon="pi pi-plus" iconPos="left"></p-button>
+    </div>
+  </div>
+  <div>
+    <p-table [value]="emailsList" styleClass="p-datatable-striped">
+      <ng-template pTemplate="header">
+        <tr>
+          <th class="col-numero">#</th>
+          <th class="col-email">E-mail</th>
+          <th class="col-padrao">Padrão</th>
+          <th class="col-acao">Ação</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-email let-i="rowIndex">
+        <tr>
+          <td class="col-numero">{{ i+1 }}</td>
+          <td class="col-email">{{ email.email }}</td>
+          <td class="col-padrao">{{ email.emailPadrao }}</td>
+          <td class="col-acao">
+            <p-button (onClick)="clickEditar(email)" icon="pi pi-pencil" class="button-item"></p-button>
+            <p-button (onClick)="clickExcluir($event, email)" icon="pi pi-trash" class="button-item"></p-button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

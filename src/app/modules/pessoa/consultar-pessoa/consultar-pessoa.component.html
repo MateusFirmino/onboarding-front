@@ -1,0 +1,71 @@
+<div class="app-consultar-pessoa main-container">
+  <p-confirmPopup></p-confirmPopup>
+  <p-toast></p-toast>
+  <div>
+    <div class="p-d-flex p-jc-center p-p-5 consultar-pessoa-content page-content">
+      <div class="p-p-3 consultar-pessoa inner-page-content">
+        <h3>Clientes</h3>
+        <p-panel header="Pesquisa" class="pesquisa">
+          <div class="p-grid">
+            <div class="p-col-2">
+              <h5>Tipo</h5>
+              <p-dropdown [options]="tipos" [(ngModel)]="tipoPessoa"  placeholder="Selecione o tipo"
+                          optionValue="valor" optionLabel="nome"></p-dropdown>
+            </div>
+            <div class="p-col-8">
+              <h5>Nome</h5>
+              <input type="text" pInputText [(ngModel)]="nomePessoa">
+            </div>
+            <div class="p-col-2">
+              <h5>Situação</h5>
+              <p-dropdown [(ngModel)]="tipoSituacao" [options]="situacoes" placeholder="Selecione a situação"
+                          optionLabel="nome" optionValue="valor"></p-dropdown>
+            </div>
+          </div>
+          <div class="p-d-flex p-jc-end">
+            <p-button (click)="carregarTabela(nomePessoa, tipoPessoa, tipoSituacao)" styleClass="button"
+                      label="Pesquisar" icon="pi pi-search" iconPos="left"></p-button>
+            <p-button label="Limpar"  icon="pi pi-refresh" (click)="limpar()" type="button"
+                      iconPos="left"></p-button>
+          </div>
+        </p-panel>
+        <p-panel header="Lista de Clientes" class="lista">
+          <ng-template pTemplate="icons">
+            <p-button label="Adicionar"  icon="pi pi-plus" routerLink="/pessoa/cadastrar-pessoas"
+                      styleClass="button" iconPos="left"></p-button>
+          </ng-template>
+          <div>
+            <p-table [value]="pessoas" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+                     currentPageReportTemplate="" [rowsPerPageOptions]="[10,25,50]" styleClass="p-datatable-gridlines">
+                  <ng-template pTemplate="header">
+                <tr>
+                  <th class="col-numero">#</th>
+                  <th class="col-nome">Nome</th>
+                  <th class="col-cpfCpnj">CPF/CNPJ</th>
+                  <th class="col-situacao">Situação</th>
+                  <th class="col-acoes">Ações</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-pessoaItem let-i="rowIndex">
+                <tr>
+                  <td class="col-numero">{{ i + 1 }}</td>
+                  <td class="col-nome" style="text-align: left">{{ pessoaItem.nome }}</td>
+                  <td class="col-cpfCpnj">{{this.verificaTipoPessoa(pessoaItem.cpfCnpj) }}</td>
+                  <td class="col-situacao"><p *ngIf="pessoaItem.situacao === 'ATIVO'">ATIVO</p>
+                    <p *ngIf="pessoaItem.situacao === 'INATIVO'">INATIVO</p></td>
+                  <td class="col-acoes">
+                    <button pButton pRipple type="button" icon="pi pi-pencil"
+                            class="p-button-rounded p-button-warning p-mr-3"
+                            routerLink="/pessoa/cadastrar-pessoas/{{ pessoaItem.id }}"></button>
+                    <button pButton pRipple type="button" icon="pi pi-times" (click)="this.excluirPessoa(pessoaItem.id)"
+                            class="p-button-rounded p-button-danger"></button>
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+        </p-panel>
+      </div>
+    </div>
+  </div>
+</div>

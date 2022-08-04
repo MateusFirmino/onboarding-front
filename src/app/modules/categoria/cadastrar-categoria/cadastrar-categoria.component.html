@@ -1,0 +1,27 @@
+<div class="app-cadastrar-categoria main-container">
+  <p-confirmPopup></p-confirmPopup>
+  <p-toast></p-toast>
+  <div>
+    <div class="p-d-flex p-jc-center p-p-5 cadastrar-categoria-content page-content">
+      <div class="p-p-3 cadastrar-categoria inner-page-content">
+        <h3>Categorias</h3>
+        <p-panel header="Nova Categoria" class="novo">
+          <div class="p-grid">
+            <div class="p-col-10">
+              <h5>Nome</h5>
+              <input type="text" pInputText [(ngModel)]="nome">
+            </div>
+            <div class="p-col-2">
+              <h5>Situação</h5>
+              <p-dropdown [options]="situacao" [(ngModel)]="situacaoSelecionada" optionLabel="nome"></p-dropdown>
+            </div>
+          </div>
+          <div class="p-d-flex p-jc-evenly">
+            <p-button (onClick)="clickSalvar()" styleClass="button" label="Salvar" icon="pi pi-check" iconPos="left"></p-button>
+            <p-button (onClick)="clickCancelar()" styleClass="button" label="Cancelar" icon="pi pi-times" iconPos="left"></p-button>
+          </div>
+        </p-panel>
+      </div>
+    </div>
+  </div>
+</div>

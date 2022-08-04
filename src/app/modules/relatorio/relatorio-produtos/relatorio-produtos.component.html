@@ -1,0 +1,39 @@
+<div class="app-relatorio-produtos main-container">
+  <p-confirmPopup></p-confirmPopup>
+  <p-toast></p-toast>
+  <div>
+    <div class="p-d-flex p-jc-center p-p-5 relatorio-produtos-content page-content">
+      <div class="p-p-3 relatorio-produtos inner-page-content">
+        <p-panel class="relatorio-produtos" header="Relatório de Produtos">
+          <div class="p-grid p-d-flex">
+            <div class="p-col-9">
+              <h5>Categoria</h5>
+              <p-autoComplete (completeMethod)="autocompleteCategoria($event.query)" [(ngModel)]="categoriaSelecionada"
+                              [forceSelection]="true" [suggestions]="categoriaFiltrada" field="nome"></p-autoComplete>
+            </div>
+            <div class="p-col-2">
+              <h5>Situação</h5>
+              <div class="p-d-flex p-flex-row p-jc-between">
+                <p-dropdown [(ngModel)]="tipoSituacao" [options]="situacoes" optionLabel="nome"
+                            optionValue="valor" placeholder="Selecione a situação"></p-dropdown>
+              </div>
+            </div>
+          </div>
+          <div class="p-grid p-d-flex">
+            <div class="p-col-9">
+              <h5>Produto</h5>
+              <p-autoComplete (completeMethod)="autocompleteProduto($event.query)" [(ngModel)]="produtoSelecionado"
+                              [forceSelection]="true" [suggestions]="produtosFiltrados" field="nome"></p-autoComplete>
+            </div>
+          </div>
+          <div class="p-d-flex p-jc-end">
+            <p-button (onClick)="clickLimpar()" icon="pi pi-refresh" iconPos="left" label="Limpar" styleClass="button">
+            </p-button>
+            <p-button (onClick)="clickImprimir()" icon="pi pi-print" iconPos="left" label="Imprimir"
+                      styleClass="button"></p-button>
+          </div>
+        </p-panel>
+      </div>
+    </div>
+  </div>
+</div>

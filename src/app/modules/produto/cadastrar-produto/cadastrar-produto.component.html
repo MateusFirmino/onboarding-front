@@ -1,0 +1,69 @@
+<div class="app-cadastrar-produto main-container">
+  <p-toast></p-toast>
+  <div>
+    <div class="p-d-flex p-jc-center p-p-5 cadastrar-produto-content page-content">
+      <div class="p-p-3 cadastrar-produto inner-page-content">
+        <h3>Produtos</h3>
+        <p-panel header="Novo" class="novo">
+          <div class="p-grid">
+            <div class="p-col-5">
+              <h5>Categoria</h5>
+              <p-dropdown [options]="categoriasProduto" [(ngModel)]="categoriaProdutoSelecionado" optionLabel="nome"
+                          placeholder="Selecione"></p-dropdown>
+            </div>
+            <div class="p-col-5">
+              <h5>Nome</h5>
+              <input type="text" pInputText [(ngModel)]="nome">
+            </div>
+            <div class="p-col-2">
+              <h5>Situação</h5>
+              <p-dropdown [options]="situacoes" [(ngModel)]="situacaoSelecionada" optionLabel="nome"></p-dropdown>
+            </div>
+          </div>
+          <div class="p-grid">
+            <div class="p-col-3">
+              <h5>Valor</h5>
+              <p-inputNumber
+                [(ngModel)]="valor"
+                [min]="0"
+                mode="currency"
+                currency="BRL"
+                locale="pt-BR"
+                [inputStyle]="{'text-align': 'right'}"
+                (focusout)="verificaValorDesconto()"
+              ></p-inputNumber>
+            </div>
+            <div class="p-col-3">
+              <h5>Desconto</h5>
+              <p-inputNumber
+                [disabled]="verificaValor()"
+                [(ngModel)]="valorDesconto"
+                [min]="0"
+                mode="currency"
+                currency="BRL"
+                locale="pt-BR"
+                [inputStyle]="{'text-align': 'right'}"
+                (focusout)="verificaValorDesconto()"
+              ></p-inputNumber>
+            </div>
+            <div class="p-col-3">
+              <h5>Quantidade</h5>
+              <p-inputNumber [(ngModel)]="quantidade" [min]="0" [minFractionDigits]="2"></p-inputNumber>
+            </div>
+            <div class="p-col-3">
+              <h5>Tipo</h5>
+              <p-dropdown [options]="tiposProduto" [(ngModel)]="tipoProdutoSelecionado" optionLabel="nome"
+                          placeholder="Selecione"></p-dropdown>
+            </div>
+          </div>
+          <div class="p-d-flex p-jc-evenly p-mt-3">
+            <p-button (onClick)="clickSalvar()" styleClass="button" label="Salvar" icon="pi pi-check"
+                      iconPos="left"></p-button>
+            <p-button (onClick)="clickCancelar()" styleClass="button" label="Cancelar" icon="pi pi-times"
+                      iconPos="left"></p-button>
+          </div>
+        </p-panel>
+      </div>
+    </div>
+  </div>
+</div>

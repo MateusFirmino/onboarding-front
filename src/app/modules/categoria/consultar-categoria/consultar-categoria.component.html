@@ -1,0 +1,59 @@
+<div class="app-consultar-categoria main-container">
+  <p-confirmPopup></p-confirmPopup>
+  <p-toast></p-toast>
+  <div>
+    <div class="p-d-flex p-jc-center p-p-5 consultar-categoria-content page-content">
+      <div class="p-p-3 consultar-categoria inner-page-content">
+        <h3>Categorias</h3>
+        <p-panel header="Pesquisa" class="pesquisa">
+          <div class="p-grid">
+            <div class="p-col-9">
+              <h5>Nome</h5>
+              <input type="text" pInputText [(ngModel)]="nome">
+            </div>
+            <div class="p-col-3">
+              <h5>Situação</h5>
+              <p-dropdown [options]="situacoes" [(ngModel)]="tipoSituacao" placeholder="Selecione a situação"
+                          optionLabel="nome" optionValue="valor"></p-dropdown>
+            </div>
+          </div>
+          <div class="p-d-flex p-jc-end">
+            <p-button (click)="carregarTabela(nome,tipoSituacao)" styleClass="button"
+                      label="Pesquisar" icon="pi pi-search" iconPos="left"></p-button>
+            <p-button (onClick)="limpar()" styleClass="button" label="Limpar" icon="pi pi-refresh" iconPos="left"></p-button>
+          </div>
+        </p-panel>
+        <p-panel header="Lista Categorias" class="lista">
+          <ng-template pTemplate="icons">
+            <p-button (click)="clickAdicionar()" styleClass="button" label ="Adicionar" icon="pi pi-plus" iconPos="left"></p-button>
+          </ng-template>
+          <div>
+            <p-table [value]="categorias" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+                     currentPageReportTemplate="" [rowsPerPageOptions]="[10,25,50]" styleClass="p-datatable-striped">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th class="col-numero">#</th>
+                  <th class="col-nome">Nome</th>
+                  <th class="col-situacao">Situação</th>
+                  <th class="col-acoes">Ações</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-categoria let-i="rowIndex">
+                <tr>
+                  <td class="col-numero">{{ i+1 }}</td>
+                  <td class="col-nome" style="text-align: left">{{ categoria.nome }}</td>
+                  <td class="col-situacao"><p *ngIf="categoria.situacao === 'ATIVO'">ATIVO</p>
+                    <p *ngIf="categoria.situacao === 'INATIVO'">INATIVO</p></td>
+                  <td class="col-acoes">
+                    <p-button routerLink="/categorias/cadastrar-categorias/{{categoria.id}}" icon="pi pi-pencil" class="button-item"></p-button>
+                    <p-button (onClick)="clickExcluir($event, categoria.id)" icon="pi pi-trash" class="button-item"></p-button>
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+        </p-panel>
+      </div>
+    </div>
+  </div>
+</div>
